@@ -1,0 +1,26 @@
+envelope from data/S88_env.txt, L=88: g*(0)=4788.00 g*(40)=4788.00 g*(42)=4781.00 g*(50)=4772.00 g*(60)=4772.00 g*(70)=4772.00 (x13440)
+selftest: H5 = 2802/(62*2^7) = 0.353074597 (python 1401/3968 = 0.353074597)
+  min hyperplane H4 = 0.342708333 (python 0.342708333)
+level lists: 4427360 labelled partitions; 4788.00(250880) 4781.00(1571360) 4774.00(4427360) floor 4772.00(0)
+hyperplane-map selftest mismatches: 0
+lex-leader depth 5, symmetry elements per root (total 95685): 1024 512 512 9216 1024 1024 512 1024 1024 1024 3072 512 512 1024 1024 512 512 1536 512 512 512 512 512 512 512 512 512 512 512 512 1024 512 512 1024 1024 512 1024 512 512 3072 1024 1024 512 1024 1024 512 9216 1024 1024 1536 3072 3072 3072 3072 3072 18432 1024 1024 512
+tau = 4780/13440 = 0.355654762; roots = 59
+total tasks generated: 1359
+tasks: 1359
+[1s] tasks 100/1359 nodes 4.34e+05
+[2s] tasks 200/1359 nodes 7.49e+05
+[5s] tasks 300/1359 nodes 1.56e+06
+[6s] tasks 400/1359 nodes 1.89e+06
+[7s] tasks 500/1359 nodes 2.33e+06
+[8s] tasks 600/1359 nodes 2.59e+06
+[10s] tasks 700/1359 nodes 3.27e+06
+[10s] tasks 800/1359 nodes 3.32e+06
+[10s] tasks 900/1359 nodes 3.37e+06
+[10s] tasks 1000/1359 nodes 3.44e+06
+[11s] tasks 1100/1359 nodes 3.49e+06
+[11s] tasks 1200/1359 nodes 3.55e+06
+[11s] tasks 1300/1359 nodes 3.66e+06
+[11s] tasks 1359/1359 nodes 3.7e+06
+level drops: 92500808, lex-leader prunes: 8802
+heaviest roots (nodes, root, value, |sym|): (5.99e+05, 10, 0.356250000, 3072) (3.23e+05, 3, 0.356250000, 9216) (3.15e+05, 6, 0.356250000, 512) (3.1e+05, 9, 0.356250000, 1024) (3.07e+05, 2, 0.356250000, 512) (3.07e+05, 1, 0.356250000, 512)
+done in 11.3s: nodes=3697095 hyperplane-exacts=121239 leaves=0 violations(H5>tau)=0 consistencyFail=0

@@ -1,0 +1,16 @@
+selftest: H5 = 2802/(62*2^7) = 0.353074597 (python 1401/3968 = 0.353074597)
+  min hyperplane H4 = 0.342708333 (python 0.342708333)
+tau = 4787/13440 = 0.356175595; roots = 11
+total tasks generated: 944
+tasks: 944
+[22s] tasks 100/944 nodes 2.03e+08
+[34s] tasks 200/944 nodes 3.12e+08
+[47s] tasks 300/944 nodes 4.31e+08
+[54s] tasks 400/944 nodes 4.93e+08
+[75s] tasks 500/944 nodes 6.88e+08
+[85s] tasks 600/944 nodes 7.87e+08
+[94s] tasks 700/944 nodes 8.66e+08
+[166s] tasks 800/944 nodes 1.53e+09
+[207s] tasks 900/944 nodes 1.91e+09
+[208s] tasks 944/944 nodes 1.91e+09
+done in 207.9s: nodes=1913895173 hyperplane-exacts=4348733 leaves=0 violations(H5>tau)=0 consistencyFail=0

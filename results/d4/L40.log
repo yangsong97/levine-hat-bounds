@@ -1,0 +1,22 @@
+selftest witness: root(n=8) N/256=318.00; n1:324.00 n2:320.00 n3:324.00 n4:318.00 n5:324.00 n6:318.00 n7:324.00 n9:324.00 n10:318.00 n11:324.00 n12:324.00 n13:324.00 n14:324.00 n15:324.00
+  exact H4 = 1350/(30*128) = 0.3515625
+L=40 thr=1233920 roots=13 levels: 322/896 324/896
+tasks: 2699
+[0s] tasks 200/2699
+[0s] tasks 400/2699
+[0s] tasks 600/2699
+[0s] tasks 800/2699
+[0s] tasks 1000/2699
+[0s] tasks 1200/2699
+[0s] tasks 1400/2699
+[0s] tasks 1600/2699
+[0s] tasks 1800/2699
+[0s] tasks 2000/2699
+[0s] tasks 2200/2699
+[0s] tasks 2400/2699
+[0s] tasks 2600/2699
+[0s] tasks 2699/2699
+done in 0.5s: nodes=17989418 surviving leaves=6728 violations(H4>=T_L)=0
+T_L = (4860-40)/13440 = 0.358630952
+best exact H4 among survivors: M=342 K=5  H4=0.356250000  asg: 0 1 0 1 0 2 0 3 1 3 1 3 0 3 0 1 0 4 2 4 0 1 1 3 0 3 0 3 1 3
+leaf block counts: K5:1920 K6:840 K7:3280 K8:688

@@ -1,0 +1,141 @@
+envelope from data/S96_env.txt, L=96: g*(0)=4788.00 g*(40)=4788.00 g*(42)=4781.00 g*(50)=4764.00 g*(60)=4764.00 g*(70)=4764.00 (x13440)
+selftest: H5 = 2802/(62*2^7) = 0.353074597 (python 1401/3968 = 0.353074597)
+  min hyperplane H4 = 0.342708333 (python 0.342708333)
+level lists: 20420960 labelled partitions; 4788.00 4781.00 4774.00 4770.50 4768.75 4767.88 4767.00 4765.25 floor 4764.00
+hyperplane-map selftest mismatches: 0
+lex-leader depth 12, symmetry elements per root (total 149245): 1024 1024 512 512 1024 512 1024 1024 3072 9216 1024 512 1024 1024 512 512 1536 512 512 512 512 512 1024 512 512 1024 512 1024 1024 512 512 512 512 512 512 512 512 512 512 3072 1024 1024 9216 1536 512 1024 1024 1024 512 1024 3072 3072 3072 3072 3072 18432 1024 1024 512 6144 3072 512 256 128 256 256 256 3072 1536 512 1024 128 128 128 128 128 6144 1024 128 1024 1024 512 512 512 512 512 512 512 512 512 512 512 1024 512 512 512 1024 1024 1024 1024 1024 1024 1024 512 512 512 256 512 1024 1024 1024 512 512 1024 512 512 256 256 256 256 128 128 256 128 128 256 128 128 256 128 128
+tau = 4771/13440 = 0.354985119; roots = 131
+root 116 pruned at start (h0=0.354947917)
+root 117 pruned at start (h0=0.354947917)
+root 118 pruned at start (h0=0.354947917)
+root 119 pruned at start (h0=0.354947917)
+root 120 pruned at start (h0=0.354947917)
+root 121 pruned at start (h0=0.354947917)
+root 122 pruned at start (h0=0.354947917)
+root 123 pruned at start (h0=0.354947917)
+root 124 pruned at start (h0=0.354947917)
+root 125 pruned at start (h0=0.354947917)
+root 126 pruned at start (h0=0.354947917)
+root 127 pruned at start (h0=0.354947917)
+root 128 pruned at start (h0=0.354947917)
+root 129 pruned at start (h0=0.354947917)
+root 130 pruned at start (h0=0.354947917)
+total tasks generated: 11393
+tasks: 11393
+[30s] tasks 100/11393 nodes 3.19e+07
+[60s] tasks 200/11393 nodes 6.37e+07
+[88s] tasks 300/11393 nodes 9.52e+07
+[119s] tasks 400/11393 nodes 1.31e+08
+[150s] tasks 500/11393 nodes 1.64e+08
+[179s] tasks 600/11393 nodes 1.96e+08
+[285s] tasks 700/11393 nodes 2.9e+08
+[337s] tasks 800/11393 nodes 3.49e+08
+[343s] tasks 900/11393 nodes 3.57e+08
+[367s] tasks 1000/11393 nodes 3.84e+08
+[449s] tasks 1100/11393 nodes 4.77e+08
+[450s] tasks 1200/11393 nodes 4.77e+08
+[551s] tasks 1300/11393 nodes 5.92e+08
+[552s] tasks 1400/11393 nodes 5.92e+08
+[586s] tasks 1500/11393 nodes 6.32e+08
+[615s] tasks 1600/11393 nodes 6.64e+08
+[651s] tasks 1700/11393 nodes 7.04e+08
+[687s] tasks 1800/11393 nodes 7.45e+08
+[688s] tasks 1900/11393 nodes 7.46e+08
+[717s] tasks 2000/11393 nodes 7.78e+08
+[747s] tasks 2100/11393 nodes 8.12e+08
+[748s] tasks 2200/11393 nodes 8.13e+08
+[784s] tasks 2300/11393 nodes 8.53e+08
+[879s] tasks 2400/11393 nodes 9.61e+08
+[889s] tasks 2500/11393 nodes 9.71e+08
+[1004s] tasks 2600/11393 nodes 1.11e+09
+[1005s] tasks 2700/11393 nodes 1.11e+09
+[1043s] tasks 2800/11393 nodes 1.15e+09
+[1069s] tasks 2900/11393 nodes 1.18e+09
+[1069s] tasks 3000/11393 nodes 1.18e+09
+[1107s] tasks 3100/11393 nodes 1.22e+09
+[1161s] tasks 3200/11393 nodes 1.28e+09
+[1217s] tasks 3300/11393 nodes 1.34e+09
+[1218s] tasks 3400/11393 nodes 1.34e+09
+[1253s] tasks 3500/11393 nodes 1.38e+09
+[1288s] tasks 3600/11393 nodes 1.42e+09
+[1288s] tasks 3700/11393 nodes 1.42e+09
+[1327s] tasks 3800/11393 nodes 1.46e+09
+[1361s] tasks 3900/11393 nodes 1.5e+09
+[1361s] tasks 4000/11393 nodes 1.5e+09
+[1479s] tasks 4100/11393 nodes 1.63e+09
+[1479s] tasks 4200/11393 nodes 1.63e+09
+[1519s] tasks 4300/11393 nodes 1.68e+09
+[1556s] tasks 4400/11393 nodes 1.72e+09
+[1557s] tasks 4500/11393 nodes 1.72e+09
+[1592s] tasks 4600/11393 nodes 1.76e+09
+[1626s] tasks 4700/11393 nodes 1.8e+09
+[1626s] tasks 4800/11393 nodes 1.8e+09
+[1659s] tasks 4900/11393 nodes 1.83e+09
+[1671s] tasks 5000/11393 nodes 1.85e+09
+[1687s] tasks 5100/11393 nodes 1.86e+09
+[1703s] tasks 5200/11393 nodes 1.88e+09
+[1759s] tasks 5300/11393 nodes 1.93e+09
+[1891s] tasks 5400/11393 nodes 2.08e+09
+[1923s] tasks 5500/11393 nodes 2.11e+09
+[1934s] tasks 5600/11393 nodes 2.13e+09
+[1940s] tasks 5700/11393 nodes 2.13e+09
+[1956s] tasks 5800/11393 nodes 2.15e+09
+[1972s] tasks 5900/11393 nodes 2.17e+09
+[2005s] tasks 6000/11393 nodes 2.21e+09
+[2062s] tasks 6100/11393 nodes 2.27e+09
+[2063s] tasks 6200/11393 nodes 2.27e+09
+[2140s] tasks 6300/11393 nodes 2.35e+09
+[2212s] tasks 6400/11393 nodes 2.42e+09
+[2403s] tasks 6500/11393 nodes 2.63e+09
+[2476s] tasks 6600/11393 nodes 2.7e+09
+[2664s] tasks 6700/11393 nodes 2.91e+09
+[2785s] tasks 6800/11393 nodes 3.01e+09
+[2950s] tasks 6900/11393 nodes 3.2e+09
+[3006s] tasks 7000/11393 nodes 3.27e+09
+[3025s] tasks 7100/11393 nodes 3.29e+09
+[3193s] tasks 7200/11393 nodes 3.43e+09
+[3194s] tasks 7300/11393 nodes 3.43e+09
+[3196s] tasks 7400/11393 nodes 3.43e+09
+[3209s] tasks 7500/11393 nodes 3.43e+09
+[3209s] tasks 7600/11393 nodes 3.43e+09
+[3209s] tasks 7700/11393 nodes 3.43e+09
+[3209s] tasks 7800/11393 nodes 3.43e+09
+[3223s] tasks 7900/11393 nodes 3.44e+09
+[3243s] tasks 8000/11393 nodes 3.45e+09
+[3244s] tasks 8100/11393 nodes 3.45e+09
+[3244s] tasks 8200/11393 nodes 3.45e+09
+[3244s] tasks 8300/11393 nodes 3.45e+09
+[3245s] tasks 8400/11393 nodes 3.45e+09
+[3247s] tasks 8500/11393 nodes 3.45e+09
+[3247s] tasks 8600/11393 nodes 3.45e+09
+[3247s] tasks 8700/11393 nodes 3.45e+09
+[3248s] tasks 8800/11393 nodes 3.45e+09
+[3248s] tasks 8900/11393 nodes 3.45e+09
+[3250s] tasks 9000/11393 nodes 3.45e+09
+[3250s] tasks 9100/11393 nodes 3.45e+09
+[3250s] tasks 9200/11393 nodes 3.45e+09
+[3251s] tasks 9300/11393 nodes 3.45e+09
+[3252s] tasks 9400/11393 nodes 3.45e+09
+[3252s] tasks 9500/11393 nodes 3.45e+09
+[3252s] tasks 9600/11393 nodes 3.45e+09
+[3253s] tasks 9700/11393 nodes 3.45e+09
+[3254s] tasks 9800/11393 nodes 3.45e+09
+[3254s] tasks 9900/11393 nodes 3.45e+09
+[3255s] tasks 10000/11393 nodes 3.45e+09
+[3255s] tasks 10100/11393 nodes 3.45e+09
+[3256s] tasks 10200/11393 nodes 3.45e+09
+[3256s] tasks 10300/11393 nodes 3.45e+09
+[3256s] tasks 10400/11393 nodes 3.45e+09
+[3257s] tasks 10500/11393 nodes 3.45e+09
+[3257s] tasks 10600/11393 nodes 3.45e+09
+[3258s] tasks 10700/11393 nodes 3.45e+09
+[3258s] tasks 10800/11393 nodes 3.45e+09
+[3259s] tasks 10900/11393 nodes 3.45e+09
+[3260s] tasks 11000/11393 nodes 3.46e+09
+[3261s] tasks 11100/11393 nodes 3.46e+09
+[3262s] tasks 11200/11393 nodes 3.46e+09
+[3262s] tasks 11300/11393 nodes 3.46e+09
+[3263s] tasks 11393/11393 nodes 3.46e+09
+level drops: 37533878011, lex-leader prunes: 9768330
+heaviest roots (nodes, root, value, |sym|): (2.06e+08, 52, 0.355729167, 3072) (2.04e+08, 54, 0.355729167, 3072) (1.88e+08, 56, 0.355729167, 1024) (1.46e+08, 43, 0.355729167, 1536) (1.35e+08, 58, 0.355729167, 512) (1.34e+08, 23, 0.355729167, 512)
+done in 3262.6s: nodes=3456384451 hyperplane-exacts=196295878 leaves=0 violations(H5>tau)=0 consistencyFail=0

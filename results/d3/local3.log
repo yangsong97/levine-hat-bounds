@@ -1,0 +1,19 @@
+Bell(14) from level structure: 190899322 (expect 190899322)
+enumerated 190899322 partitions in 41.8s with 2 threads
+max N = 82944 (= 324/896 * 256? yes), min N = 57344
+All N values >= 81152 (score >= 317/896), with counts:
+  N=82944  score=324.0000/896  count=3920  cumulative=3920
+  N=82432  score=322.0000/896  count=16128  cumulative=20048
+  N=82176  score=321.0000/896  count=1344  cumulative=21392
+  N=81920  score=320.0000/896  count=159712  cumulative=181104
+  N=81664  score=319.0000/896  count=75264  cumulative=256368
+  N=81408  score=318.0000/896  count=545104  cumulative=801472
+  N=81344  score=317.7500/896  count=2256  cumulative=803728
+  N=81280  score=317.5000/896  count=11648  cumulative=815376
+  N=81152  score=317.0000/896  count=564928  cumulative=1380304
+PM root = 82944
+wrote tables; top records: 256368
+
+real	0m47.736s
+user	1m10.674s
+sys	0m11.642s

@@ -1,0 +1,11 @@
+group size 2688
+invariance violations: 0
+N=81152 (317/896): patterns 564928, orbits 227, sum of orbit sizes 564928
+N=81280 (317/896): patterns 11648, orbits 6, sum of orbit sizes 11648
+N=81344 (317/896): patterns 2256, orbits 5, sum of orbit sizes 2256
+N=81408 (318/896): patterns 545104, orbits 223, sum of orbit sizes 545104
+N=81664 (319/896): patterns 75264, orbits 31, sum of orbit sizes 75264
+N=81920 (320/896): patterns 159712, orbits 79, sum of orbit sizes 159712
+N=82176 (321/896): patterns 1344, orbits 1, sum of orbit sizes 1344
+N=82432 (322/896): patterns 16128, orbits 8, sum of orbit sizes 16128
+N=82944 (324/896): patterns 3920, orbits 5, sum of orbit sizes 3920
