@@ -79,7 +79,7 @@ Since T₇₂ = 57/160 and no leaf exceeds it, **max_P H₄(P) = 57/160 exactly,
 - No partition without a 324 frame has frame loss below 56.
 - An independent hill-climb on H₄ from 12 random starts peaked at 341/960 and never exceeded 57/160.
 
-**What this does not cover.** The referee reduction (V₂ ≤ max H_d) and the frame-averaging inequality are taken from the write-up; I checked both by hand, and the inequality numerically, but neither is proved by this code. This is not peer reviewed.
+**What this does not cover.** The referee reduction (V₂ ≤ max H_d) and the averaging inequalities are taken from the write-up. I checked both proofs by hand, and `scripts/verify_lemma1.py` and `scripts/verify_lemma2.py` test them exactly on small cases and sampled partitions (see *Checks of Lemmas 1 and 2* below). Those tests support the proofs; they do not replace them. This is not peer reviewed.
 
 **Limits of the method.** 57/160 is the exact value of the d = 4 relaxation, so no d = 4 argument can go lower. The write-up's frame-loss recursion to d ≥ 5 cannot help either: the optimum is attained at frame loss 36–40, below the loss 72 at which the frame bound reaches 57/160, so any concave majorant is flat on [40, 72] (equivalently, the best penalty constant is c₄ = 1, which keeps L_d/N_d = 72/15 at every d). Going lower needs a genuine d = 5 computation, e.g. a compatibility search over the 31 hyperplanes of F₂⁵ using the near-optimal d = 4 partitions.
 
@@ -133,6 +133,23 @@ The roots for τ ≥ 4774 are the 59 d = 4 orbits at 4788 (11) and 4781 (48); th
 
 See [README.md](README.md#reproducing-the-results) for build and run commands.
 
+## Checks of Lemmas 1 and 2
+
+Both scripts are written from the definitions alone and share no code with the searches; every quantity is an exact rational.
+
+`verify_lemma1.py` (referee reduction, V₂ ≤ max H_d):
+- **Coupling.** For every label (a, b) with a ≠ 0, the bits a·Rᵢ ⊕ b over uniform rows R are uniform on {0,1}ⁿ (d ≤ 3, n ≤ 3).
+- **True game.** V₂(n) by brute force over Bob's pure strategies with Alice's best response: V₂(1) = 1/4, V₂(2) = 5/16, V₂(3) = 11/32.
+- **Referee game.** Rows public, Bob also sees J, brute force over every map g_R from labels to positions, with Alice restricted to her rows and then allowed every x.
+- **Chain.** V₂(n) ≤ referee value ≤ all-x value ≤ max H_d in all 8 cases (d = 1, 2 with n ≤ 3; d = 3 with n ≤ 2). Here max H₁ and max H₂ are found by brute force and max H₃ = 81/224.
+
+`verify_lemma2.py` (averaging):
+- **Incidence.** Each nonzero a lies in 2^(d−1) − 1 of the 2^d − 1 hyperplanes and in 7 (d = 4) or 35 (d = 5) of the N_d = 15 or 155 frames; 14 N_d = m_d c; every point is covered by m_d/2 labels.
+- **Copies.** Each hyperplane, with a basis, is an exact copy of the (d − 1)-dimensional problem (covers preserved, point map onto).
+- **Block law.** The expected maximum over a hyperplane's labels under P's retention equals the same quantity computed on P|_T alone.
+- **Inequality.** c · max_x count ≤ Σ_W max_x count_W holds for every retention state, and the expectation inequality holds. Tested for hyperplanes (d = 3, 4, 5) and frames (d = 4, 5) on 1,098 partition–family tests: random partitions with 1–12 blocks, the optimal d = 4 partition, and both best d = 5 partitions. 0 failures.
+- **Negative controls.** Five deliberately false variants are each detected: allowing a = 0, overweighting by c + 1, bounding by the minimum hyperplane, corrupting one cover entry, and claiming the referee value is below V₂(n).
+
 ## How far can this go? (heuristic ceilings)
 
 `anneal.cpp` / `anneal6.cpp`: simulated annealing on H_d (exact scoring). It finds the d = 4 optimum 57/160 on its first restart.
@@ -145,4 +162,4 @@ See [README.md](README.md#reproducing-the-results) for build and run commands.
 | 5 | ≥ 1401/3968 ≈ 0.353075 | best of 11,360 annealing restarts (20 min); proved ≤ 0.354613 |
 | 6 | ≥ 45/128 ≈ 0.351563 | best of 6,493 restarts (25 min), seeded half from d = 5 lifts |
 
-The best d = 5 partition (8 blocks; `results/heuristics/best5.txt`) has hyperplane values 8 × 4788, 20 × 4781, 1 × 4606, 2 × 4588.5 (×1/13440), average 4764.74, so the hyperplane-average relaxation used by `bb5*` cannot prove anything below ≈ 0.354520 without scoring huge numbers of leaves exactly. The 4767 proof shows that relaxation's maximum is at most 4767/13440; the 4766 proof goes one unit lower only by scoring 2,237 surviving partitions exactly. The successive drops of max H_d (0.00536, 0.00318, ≥ 0.00151) are consistent with the relaxations converging to about 0.350, i.e. to the conjectured value 7/20, but that is extrapolation, not proof.
+Two partitions reach H₅ = 1401/3968. The 8-block one found by annealing (`results/heuristics/best5.txt`) has hyperplane values 8 × 4788, 20 × 4781, 1 × 4606, 2 × 4588.5 (×1/13440), average 4764.74. The 6-block one that survived the τ = 4766 search (best leaf of `results/d5/D5_4766/c0.log`) has 16 × 4788, 8 × 4781, 4 × 4774, 1 × 4606, 2 × 4599, average 4766.32 (both printed by `verify_lemma2.py`). So the maximum of the hyperplane-average relaxation used by `bb5*` lies between 4766.32 and 4767 (the 4767 proof had no survivors). The 4766 proof is below that ceiling: it holds only because the 2,237 partitions the caps cannot exclude were scored exactly, and every lower target adds roots and survivors. The successive drops of max H_d (0.00536, 0.00318, ≥ 0.00151) are consistent with the relaxations converging to about 0.350, i.e. to the conjectured value 7/20, but that is extrapolation, not proof.

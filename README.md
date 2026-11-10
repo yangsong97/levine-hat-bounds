@@ -18,7 +18,7 @@ Theorem 2 closes 60% of the gap between 81/224 and 7/20. Heuristic search finds 
 
 The write-up is in [`paper/paper.md`](paper/paper.md) ([PDF](paper/paper.pdf)). [`COMPUTATION.md`](COMPUTATION.md) records every run, check and intermediate result.
 
-> **Status.** Computer-assisted and not peer reviewed. The referee reduction and the averaging inequalities (paper, Lemmas 1–2) come from the earlier write-up and were checked by hand, not in code. The write-up's own code package is not included here; everything in `src/` was written independently from its text.
+> **Status.** Computer-assisted and not peer reviewed. The referee reduction and the averaging inequalities (paper, Lemmas 1–2) come from the earlier write-up and were checked by hand; `scripts/verify_lemma1.py` and `scripts/verify_lemma2.py` also test them exactly in code on small cases and sampled partitions (paper, Section 6). The write-up's own code package is not included here; everything in `src/` was written independently from its text.
 
 ## Layout
 
@@ -72,11 +72,15 @@ awk '$1>0.3546131' data/orb_S104.txt > data/roots_gt4766.txt   # the 224 orbits 
 ADAPT=1 scripts/run_d5.sh 4766 data/roots_gt4766.txt 50 data/S104/merged_env.txt 104 data/lists_F4760.bin 4760
 python3 scripts/check_d5.py data/D5_4766
 python3 scripts/rescore_leaves.py data/D5_4766 4766
+
+# Lemmas 1-2 (referee reduction, averaging): exact small-case and sampled checks (about 15 s)
+python3 scripts/verify_lemma1.py
+python3 scripts/verify_lemma2.py
 ```
 
 `check_d5.py` reports `PROVED` when every chunk finished with the same settings, the chunks cover every task exactly once, and no complete partition that survived the caps has exact H₅ above τ. At τ = 4766, 2,237 partitions survive (all in tasks 0–749) and are scored exactly; the largest is 1401/3968, the best value known. `rescore_leaves.py` rescores the best survivor of each chunk in numpy, independently of `bb5R`. The same commands with 4767 (`awk '$1>0.3547'`, 155 roots) or 4769 reproduce the earlier bounds 227/640 and 4769/13440; their logs are in `results/d5/`.
 
 ## Open threads
 
-- **Target 4765/13440 ≈ 0.354539**: the last integer target above the averaging ceiling below. It adds the 34 orbits at 4765.25 as roots and would need exact scoring of many more survivors; not attempted.
-- **Ceiling of this method**: the hyperplane average already gives 4764.74/13440 ≈ 0.354520 on the best known d = 5 partition, so this search cannot go much lower. Pairs or triples of hyperplanes forced to share a row tighten that to 4756.8 and 4749.5 (paper, Section 7); building a search on triples is the natural next step.
+- **Target 4765/13440 ≈ 0.354539**: adds the 34 orbits at 4765.25 as roots and lies further below the averaging ceiling, so many more survivors would need exact scoring; not attempted.
+- **Ceiling of this method**: two different partitions reach the best known H₅ = 1401/3968. The 8-block one found by annealing has hyperplane average 4764.74/13440; the 6-block one that survived the 4766 search has 4766.32/13440 ≈ 0.354637. So the hyperplane average alone cannot certify even 4766; Theorem 2 holds because the survivors are scored exactly, and each lower target needs many more. Pairs or triples of hyperplanes forced to share a row tighten the 8-block partition's 4764.74 to 4756.8 and 4749.5 (paper, Section 7); building a search on triples is the natural next step.

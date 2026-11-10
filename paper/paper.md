@@ -29,7 +29,7 @@ The best strategies win with probability 7/20, and Bouquet et al. conjecture V�
 
 **Theorem 2.** max\_P H₅(P) ≤ 4766/13440 = 2383/6720. Hence V₂ ≤ 2383/6720 ≈ 0.354613.
 
-Theorem 1 is the exact value of the d = 4 relaxation, so no argument based on H₄ alone can do better. Theorem 2 needs a genuinely five-dimensional search. Both are computer-assisted, and both rely on the referee reduction and the averaging inequalities of \[W\] (Section 2), which we checked by hand.
+Theorem 1 is the exact value of the d = 4 relaxation, so no argument based on H₄ alone can do better. Theorem 2 needs a genuinely five-dimensional search. Both are computer-assisted, and both rely on the referee reduction and the averaging inequalities of \[W\] (Section 2), which we checked by hand and tested exactly in code on small cases (Section 6).
 
 We also report evidence about the limits of the method (Section 7). The best d = 5 partition we found has H₅ = 1401/3968 ≈ 0.353075, and the best d = 6 partition we found has H₆ = 45/128 ≈ 0.351563. The relaxation values fall by roughly half each dimension, consistent with convergence to 7/20, but this is extrapolation.
 
@@ -196,12 +196,14 @@ Every program was written from the definitions alone, and each search was checke
 | d = 5 variants | Range-minimum and nested-list versions at τ = 4780; kernel-only and lex-leader versions at τ = 4777 | identical node counts at 4780; no survivors in either at 4777 |
 | Chunked runs | Every task covered exactly once; every survivor scored exactly, none above τ | complete for L = 96, L = 104, τ = 4769, τ = 4767 and τ = 4766 |
 | Survivors at τ = 4766 | Each chunk's best survivor rescored independently in numpy with exact integers; every survivor's exact H₅ checked against its own capped hyperplane average | 0 mismatches (best 1401/3968); 0 failures over 2,237 survivors |
+| Lemma 1 (referee) | True game value V₂(n) by brute force (1/4, 5/16, 11/32 for n = 1, 2, 3), the coupling, and the referee game itself, in exact arithmetic, for d ≤ 2 with n ≤ 3 and d = 3 with n ≤ 2 | V₂(n) ≤ referee value ≤ max H_d in all 8 cases |
+| Lemma 2 (averaging) | Incidence counts in d = 3, 4, 5; hyperplanes as exact copies of the (d − 1) problem; the restricted block law; the inequality for every retention state, on 1,098 partition–family tests including the optimal d = 4 and both best d = 5 partitions | 0 failures; 5 deliberately false variants all detected |
 
-Two inputs are not verified by code. The referee reduction (Lemma 1) and the averaging inequalities (Lemma 2) are taken from \[W\]; we checked their proofs by hand. All code ran on one machine, and nobody else has reviewed it.
+The referee reduction (Lemma 1) and the averaging inequalities (Lemma 2) are taken from \[W\]. We checked their proofs by hand and tested them exactly in code (the last two rows), but those tests cover small cases and samples; the proofs are what establish the lemmas. All code ran on one machine, and nobody else has reviewed it.
 
 ## 7. Limits of the method and outlook
 
-The method of Section 5 is close to its own ceiling, while the relaxations themselves appear to keep falling toward 7/20.
+The method of Section 5 has reached its own averaging ceiling, while the relaxations themselves appear to keep falling toward 7/20.
 
 ![max H_d by dimension](fig-relaxation-by-dimension.png)
 
@@ -209,11 +211,11 @@ The method of Section 5 is close to its own ceiling, while the relaxations thems
 
 Simulated annealing with exact scoring finds the d = 4 optimum on its first restart. At d = 5 the best of 11,360 restarts over 20 minutes is 1401/3968 ≈ 0.353075, found immediately and never beaten. At d = 6 the best of 6,493 restarts is 45/128 ≈ 0.351563. The drops between dimensions (0.0134, 0.0054, 0.0032, then at least 0.0015) roughly halve each time, consistent with a limit of 7/20, though this is extrapolation.
 
-**The averaging ceiling.** The best d = 5 partition has hyperplane values 8 × 4788, 20 × 4781, 1 × 4606 and 2 × 4588.5, averaging 4764.74, about 19 units above its true H₅ of 4745.32. So the hyperplane average that every bound in Section 5 rests on has its maximum between 4764.74 and 4767. At τ = 4766 the search already scores a few thousand complete partitions exactly; below about 0.35452 it would have to score vast numbers, so Theorem 2 is within 10⁻⁴ of what this method can give.
+**The averaging ceiling.** At least two partitions reach the best value 1401/3968 = 4745.32/13440. The 8-block partition found by annealing has hyperplane values 8 × 4788, 20 × 4781, 1 × 4606 and 2 × 4588.5, averaging 4764.74. The 6-block partition that survived the τ = 4766 search has 16 × 4788, 8 × 4781, 4 × 4774, 1 × 4606 and 2 × 4599, averaging 4766.32. So the hyperplane average that every bound in Section 5 rests on has its maximum between 4766.32 and 4767, and Theorem 2 already lies below it: it holds only because the 2,237 partitions the caps cannot exclude were scored exactly. Each further unit adds roots and survivors, so the method can go lower only at a quickly growing cost.
 
-**Coupled relaxations.** The averaging loss comes from letting each hyperplane choose its own row. Since every label lies in 15 hyperplanes, H₅ can also be bounded by averaging over pairs or triples of hyperplanes that must share a row: each such group is weighted so the counts sum to 15 · c(x), and maxima are taken group by group. On the best d = 5 partition these bounds tighten quickly:
+**Coupled relaxations.** The averaging loss comes from letting each hyperplane choose its own row. Since every label lies in 15 hyperplanes, H₅ can also be bounded by averaging over pairs or triples of hyperplanes that must share a row: each such group is weighted so the counts sum to 15 · c(x), and maxima are taken group by group. On the 8-block partition these bounds tighten quickly:
 
-| Bound on H₅ for the best partition | Value (×1/13440) |
+| Bound on H₅ for the 8-block partition | Value (×1/13440) |
 | --- | --- |
 | Hyperplanes, each with its own row (Lemma 2) | 4764.74 |
 | Pairs of hyperplanes sharing a row (465 pairs) | 4756.79 |
@@ -243,6 +245,7 @@ All computations ran on one 2-core x86-64 machine with 8 GB of memory, in about 
 | run\_chunks.sh, run\_d5.sh | Resumable chunked runs |
 | merge\_chunks.py, check\_d5.py | Coverage checks over chunks; any survivor must be scored exactly at or below τ |
 | pyref.py, verify.py, completeness.py, spotcheck\_local.py | Independent Python checks (Section 6) |
+| verify\_lemma1.py, verify\_lemma2.py | Exact checks of Lemmas 1 and 2 (Section 6) |
 | anneal, anneal6 | Simulated annealing for max H\_d, d = 4, 5, 6 |
 
 To reproduce Theorem 2: build the frame table, run the d = 4 search at L = 104 in chunks, reduce and expand the orbits above 4760, then run the d = 5 search at τ = 4766 with those lists and the 224 roots above 4766 and check the chunks. The README lists the exact commands.
