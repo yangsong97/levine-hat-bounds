@@ -1,12 +1,12 @@
 # Exact referee relaxations for Levine's two-player hat problem
 
-Nov 4, 2026 · @Yang
+Nov 4, 2026, revised Nov 10, 2026 · @Yang
 
 ## Abstract
 
-We prove V₂ ≤ 2383/6720 ≈ 0.354613 for the two-player Levine hat problem, improving the previous bounds 81/224 ≈ 0.361607 and 3795217/10582656 ≈ 0.358626. The proof works with the common-row referee relaxations H\_d of \[W\], which satisfy V₂ ≤ max H\_d for every d.
+We prove V₂ ≤ 17/48 ≈ 0.354167 for the two-player Levine hat problem, improving the previous bounds 81/224 ≈ 0.361607 and 3795217/10582656 ≈ 0.358626. The proof works with the common-row referee relaxations H\_d of \[W\], which satisfy V₂ ≤ max H\_d for every d.
 
-First we solve the d = 4 relaxation exactly: max H₄ = 57/160 = 0.35625, attained by 11 symmetry classes (250,880 labelled partitions). Then a hierarchical search in dimension 5 caps each of the 31 hyperplanes using complete lists of near-optimal d = 4 partitions, and scores exactly the few complete partitions that survive. The bound closes 60% of the gap between 81/224 and the conjectured value 7/20.
+First we solve the d = 4 relaxation exactly: max H₄ = 57/160 = 0.35625, attained by 11 symmetry classes (250,880 labelled partitions). Then a hierarchical search in dimension 5 caps each of the 31 hyperplanes using complete lists of near-optimal d = 4 partitions, couples groups of hyperplanes that must share a row, and scores exactly the one complete partition that survives. The bound closes 64% of the gap between 81/224 and the conjectured value 7/20.
 
 Simulated annealing suggests max H₅ ≈ 1401/3968 ≈ 0.353075 and max H₆ ≥ 45/128 ≈ 0.351563, consistent with the relaxations converging to 7/20. All results are computer-assisted and not yet peer reviewed; the code, logs and independent checks accompany this note.
 
@@ -23,11 +23,12 @@ The best strategies win with probability 7/20, and Bouquet et al. conjecture V�
 | Freiling et al. \[BFG+\] | 81/224 | 0.361607 |
 | \[W\] | 3795217/10582656 | 0.358626 |
 | Theorem 1 (this note) | 57/160 | 0.356250 |
-| Theorem 2 (this note) | 2383/6720 | 0.354613 |
+| Theorem 2, first version (hyperplane caps only) | 2383/6720 | 0.354613 |
+| Theorem 2 (this note) | 17/48 | 0.354167 |
 
 **Theorem 1.** max\_P H₄(P) = 57/160. Hence V₂ ≤ 57/160.
 
-**Theorem 2.** max\_P H₅(P) ≤ 4766/13440 = 2383/6720. Hence V₂ ≤ 2383/6720 ≈ 0.354613.
+**Theorem 2.** max\_P H₅(P) ≤ 4760/13440 = 17/48. Hence V₂ ≤ 17/48 ≈ 0.354167.
 
 Theorem 1 is the exact value of the d = 4 relaxation, so no argument based on H₄ alone can do better. Theorem 2 needs a genuinely five-dimensional search. Both are computer-assisted, and both rely on the referee reduction and the averaging inequalities of \[W\] (Section 2), which we checked by hand and tested exactly in code on small cases (Section 6).
 
@@ -45,7 +46,7 @@ H_d(P) = \frac{1}{m_d}\, \mathbb{E} \max_{x \in \mathbb{F}_2^d} \#\{(a,b) \in U 
 
 Sketch. Draw a hidden label J = (a, b) uniformly, independent uniform rows R\_i ∈ F₂ᵈ, and Bob's fair string Z. Alice's bits a·R\_i ⊕ b are independent and fair for each fixed J, so the game is unchanged. Reveal R to both players and J to Bob; extra information only helps. For fixed R, Bob's choice partitions the labels by the coordinate he selects, and the selected coordinates of Z keep blocks independently with probability 1/2. Alice then chooses a row, and allowing every x ∈ F₂ᵈ only helps her.
 
-We write all d = 4 and d = 5 values in units of 1/13440, so 81/224 = 4860, 57/160 = 4788, 227/640 = 4767, 2383/6720 = 4766 and 7/20 = 4704.
+We write all d = 4 and d = 5 values in units of 1/13440, so 81/224 = 4860, 57/160 = 4788, 227/640 = 4767, 2383/6720 = 4766, 17/48 = 4760 and 7/20 = 4704.
 
 **Lemma 2 (averaging, \[W\]).** For a three-dimensional subspace W of the coefficient space (a *frame*), let F\_W be the same objective restricted to the 14 labels with a ∈ W. Every label lies in the same number of frames, and every frame in the same number of hyperplanes T, so taking maxima separately can only increase the value:
 
@@ -141,7 +142,7 @@ In total 291 orbits and 23,848,160 labelled partitions. The values 341/960 and 1
 
 ## 5. A hierarchical search in dimension 5
 
-Theorem 2 comes from a search over partitions of the 62 labels of F₂⁵ that bounds H₅ by the hyperplane average of Lemma 2, H₅ ≤ (1/31) Σ\_T H₄(P|\_T). The point is that each hyperplane is a copy of the d = 4 problem we have just solved, so its value can be capped long before it is complete.
+Theorem 2 comes from a search over partitions of the 62 labels of F₂⁵ that starts from the hyperplane average of Lemma 2, H₅ ≤ (1/31) Σ\_T H₄(P|\_T), and then couples hyperplanes. The point is that each hyperplane is a copy of the d = 4 problem we have just solved, so its value can be capped long before it is complete.
 
 **Root.** For a target τ, every partition has a hyperplane of maximal H₄. If that maximum is at most τ, the average is at most τ. Otherwise, by Lemma 3 in dimension 5, we move it to T₁₆ (the labels with a < 16, which are exactly the d = 4 labels) and make its restriction an orbit representative. So the roots are the d = 4 orbits with H₄ > τ, listed completely by Section 4 whenever T\_L < τ. Every other hyperplane then has H₄ at most the root value h₀.
 
@@ -157,7 +158,21 @@ A node is pruned when h₀ plus the 30 caps is at most 31τ, or when a completed
 
 **Symmetry.** 32 elements of G₅ fix every root label and act regularly on the outside labels, so label 30 may be required to have minimal type as in Section 4. A lex-leader test to depth 12 then uses every lift of the root's stabilizer, between 512 and 18,432 elements per root.
 
-**Proof of Theorem 2.** The run at τ = 4766 uses the L = 104 lists (floor 4760) and the 224 orbits with H₄ ≥ 4767; no d = 4 value lies strictly between 4765.25 and 4767. It split into 19,821 tasks run in 133 resumable chunks and visited 3.12 × 10¹⁰ nodes in 9.9 hours of computing. In the first 750 tasks, whose roots lie nearest the best known partition, 2,237 complete partitions survived the caps. Each was scored exactly, and the largest is 1401/3968 ≈ 0.353075, the best value known. Hence max H₅ ≤ 4766/13440 = 2383/6720. ∎
+**Coupled bounds.** Write c\_T(x) for the number of retained labels of hyperplane T covering x ∈ F₂⁵ and c(x) for all labels. Each label lies in 15 hyperplanes, so 15 · 62 · H₅ = E max\_x Σ\_T c\_T(x), and for any group G of hyperplanes
+
+E max\_x Σ\_T c\_T ≤ E max\_x Σ\_{T∈G} c\_T + Σ\_{T∉G} 30 H₄(P|\_T).
+
+The hyperplane average of Lemma 2 is the case where G is a single hyperplane; a larger G makes its members share a row. Unplaced labels are bounded by one observation: one more label raises a maximum of counts by at most the indicator that its block is retained (expectation 1/2), and the two labels (a,0), (a,1), which cover complementary halves, together raise it by at most the indicator that either block is retained (expectation at most 3/4), whatever blocks they later join. This gives three further bounds, all valid for every completion:
+
+1. a **partial-exact cap** for each hyperplane: the exact E max over its placed labels plus 3/4 per unplaced pair and 1/2 per unplaced single label, added to the minimum above;
+2. a **coupled bound** for G = the root plus a greedily chosen set A of hyperplanes with the largest caps: the joint E max over their placed labels plus the same residuals for A, which replaces the caps of G in the total;
+3. a **direct bound** from label 53 on: 62 H₅ ≤ E max\_x (placed part of c)(x) plus 3/4 per unplaced pair and 1/2 per single.
+
+The choice of A affects only the speed. A faster version of the program computes the partial-exact caps of all children and grandchildren of a node from one evaluation per hyperplane and pair of labels. Since max(m₀ + 1, m₁) = max(m₀, m₁) + [m₀ ≥ m₁] for the side maxima m₀, m₁ of a·x, counting over retention states where m₀ ≥ m₁, where m₁ ≥ m₀, and the ties gives every such cap exactly. It visits the identical search tree.
+
+**Proof of Theorem 2.** The run at τ = 4760 uses the L = 104 lists (floor 4760), the coupled bounds, and all 291 d = 4 orbits with H₄ > 4760 as roots (the smallest is 4763.5). It split into 43,500 tasks run in 57 resumable chunks and visited 7.15 × 10¹⁰ nodes in 8.6 hours of computing. One complete partition survived the bounds; it has 17 blocks and exact H₅ = 44747/126976 ≈ 0.352405. Hence max H₅ ≤ 4760/13440 = 17/48. ∎
+
+The first version of Theorem 2 used only the hyperplane caps 1–5 listed under **Caps**. At τ = 4766 (224 roots, 19,821 tasks, 3.12 × 10¹⁰ nodes, 9.9 hours) 2,237 complete partitions survived them, all scored exactly; the largest is 1401/3968 ≈ 0.353075, the best value known. This gave max H₅ ≤ 2383/6720.
 
 | Target τ (×1/13440) | Bound | Roots | d = 4 data | Nodes | Time |
 | --- | --- | --- | --- | --- | --- |
@@ -169,8 +184,9 @@ A node is pruned when h₀ plus the 30 caps is at most 31τ, or when a completed
 | 4769 | 0.354836 | 131 | L = 104 lists | 7.94 × 10⁹ | 114 min |
 | 4767 | 0.354688 | 155 | L = 104 lists | 1.78 × 10¹⁰ | 5.2 h (40 chunks) |
 | 4766 | 0.354613 | 224 | L = 104 lists | 3.12 × 10¹⁰ | 9.9 h (133 chunks) |
+| 4760 | 0.354167 | 291 | L = 104 lists + coupled bounds | 7.15 × 10¹⁰ | 8.6 h (57 chunks) |
 
-Down to τ = 4767 no run produced a surviving partition; at τ = 4766 the 2,237 survivors were all scored exactly. The floor drives the cost: with the L = 88 lists the target 4774 had covered 7% of its tasks after 13 minutes, while with the L = 96 lists it finished in under 5. Each background job here was limited to 2 hours, so the τ = 4767 and τ = 4766 runs were split into chunks (smaller ones where tasks were slow) and resumed across many jobs and machine restarts; every chunk log records identical settings.
+Down to τ = 4767 no run produced a surviving partition; at τ = 4766 the 2,237 survivors were all scored exactly; at τ = 4760, with the coupled bounds, one partition survived. The floor drives the cost: with the L = 88 lists the target 4774 had covered 7% of its tasks after 13 minutes, while with the L = 96 lists it finished in under 5. Each background job here was limited to 2 hours, so the runs from τ = 4767 down were split into chunks (smaller ones where tasks were slow) and resumed across many jobs and machine restarts; every chunk log records identical settings.
 
 Profiling at τ = 4777 shows where the work is. Most nodes sit between labels 39 and 43, and the largest single cut comes at label 45, when the first non-root hyperplane completes: 1.3 million nodes enter, about 1,800 survive.
 
@@ -194,7 +210,11 @@ Every program was written from the definitions alone, and each search was checke
 | Symmetry, d = 5 | Lifted root stabilizers on 1,000 random completions | H₅ and root partition preserved |
 | d = 5 caps | 70 full partitions (random, hill-climbed, and lifts with up to 16 hyperplanes ≥ 4781) replayed through the search: every cap ≥ that hyperplane's final H₄, total ≥ 31 · H₅, at every depth | 0 violations in 2,310 node checks |
 | d = 5 variants | Range-minimum and nested-list versions at τ = 4780; kernel-only and lex-leader versions at τ = 4777 | identical node counts at 4780; no survivors in either at 4777 |
-| Chunked runs | Every task covered exactly once; every survivor scored exactly, none above τ | complete for L = 96, L = 104, τ = 4769, τ = 4767 and τ = 4766 |
+| Chunked runs | Every task covered exactly once; every survivor scored exactly, none above τ | complete for L = 96, L = 104, τ = 4769, 4767, 4766 and 4760 |
+| Coupled bounds, d = 5 | 3,190 full partitions (random, hill-climbed, lifts of optimal d = 4 partitions, and 3,000 near the best known ones) replayed through both versions of the τ = 4760 program, with garbage in the unplaced slots: every cap ≥ the hyperplane's final H₄, every total ≥ 31 · H₅ | 0 violations in 105,270 node checks; identical checksums for both versions |
+| Coupled bounds, d = 5 | Partial-exact caps of all 30 hyperplanes, coupled and direct bounds at 86 dumped nodes of the τ = 4760 run, recomputed from the definitions in Python with exact fractions | 0 mismatches, both versions (identical dumps) |
+| Pair tables | Child and grandchild caps from the tables against direct evaluation: 34,798 placements in a self-test at every start, and every cap during test runs | 0 mismatches |
+| Survivor at τ = 4760 | Exact H₅ by plain-Python subset summation and by numpy | 44747/126976 both times |
 | Survivors at τ = 4766 | Each chunk's best survivor rescored independently in numpy with exact integers; every survivor's exact H₅ checked against its own capped hyperplane average | 0 mismatches (best 1401/3968); 0 failures over 2,237 survivors |
 | Lemma 1 (referee) | True game value V₂(n) by brute force (1/4, 5/16, 11/32 for n = 1, 2, 3), the coupling, and the referee game itself, in exact arithmetic, for d ≤ 2 with n ≤ 3 and d = 3 with n ≤ 2 | V₂(n) ≤ referee value ≤ max H_d in all 8 cases |
 | Lemma 2 (averaging) | Incidence counts in d = 3, 4, 5; hyperplanes as exact copies of the (d − 1) problem; the restricted block law; the inequality for every retention state, on 1,098 partition–family tests including the optimal d = 4 and both best d = 5 partitions | 0 failures; 5 deliberately false variants all detected |
@@ -203,15 +223,15 @@ The referee reduction (Lemma 1) and the averaging inequalities (Lemma 2) are tak
 
 ## 7. Limits of the method and outlook
 
-The method of Section 5 has reached its own averaging ceiling, while the relaxations themselves appear to keep falling toward 7/20.
+The hyperplane caps of Section 5 have reached their own averaging ceiling, and the coupled bounds are what carry Theorem 2 below it. The relaxations themselves appear to keep falling toward 7/20.
 
 ![max H_d by dimension](fig-relaxation-by-dimension.png)
 
-*Figure 1.* Exact values: brute force (d = 1, 2), Section 3 (d = 3), Theorem 1 (d = 4). Lower ends at d = 5, 6: simulated annealing. Upper ends: Theorem 2, using max H6 ≤ max H5.
+*Figure 1.* Exact values: brute force (d = 1, 2), Section 3 (d = 3), Theorem 1 (d = 4). Lower ends at d = 5, 6: simulated annealing. Upper ends: Theorem 2 (17/48), using max H6 ≤ max H5.
 
 Simulated annealing with exact scoring finds the d = 4 optimum on its first restart. At d = 5 the best of 11,360 restarts over 20 minutes is 1401/3968 ≈ 0.353075, found immediately and never beaten. At d = 6 the best of 6,493 restarts is 45/128 ≈ 0.351563. The drops between dimensions (0.0134, 0.0054, 0.0032, then at least 0.0015) roughly halve each time, consistent with a limit of 7/20, though this is extrapolation.
 
-**The averaging ceiling.** At least two partitions reach the best value 1401/3968 = 4745.32/13440. The 8-block partition found by annealing has hyperplane values 8 × 4788, 20 × 4781, 1 × 4606 and 2 × 4588.5, averaging 4764.74. The 6-block partition that survived the τ = 4766 search has 16 × 4788, 8 × 4781, 4 × 4774, 1 × 4606 and 2 × 4599, averaging 4766.32. So the hyperplane average that every bound in Section 5 rests on has its maximum between 4766.32 and 4767, and Theorem 2 already lies below it: it holds only because the 2,237 partitions the caps cannot exclude were scored exactly. Each further unit adds roots and survivors, so the method can go lower only at a quickly growing cost.
+**The averaging ceiling.** At least two partitions reach the best value 1401/3968 = 4745.32/13440. The 8-block partition found by annealing has hyperplane values 8 × 4788, 20 × 4781, 1 × 4606 and 2 × 4588.5, averaging 4764.74. The 6-block partition that survived the τ = 4766 search has 16 × 4788, 8 × 4781, 4 × 4774, 1 × 4606 and 2 × 4599, averaging 4766.32. So the hyperplane average that the caps 1–5 rest on has its maximum between 4766.32 and 4767. The first version of Theorem 2 lay just below it only because the 2,237 partitions the caps cannot exclude were scored exactly; no amount of exact scoring could have taken the caps alone much further. Theorem 2 at 4760 holds because the coupled bound lets the root and a group of hyperplanes share a row, which removes most of the averaging loss near the best partitions: only one complete partition survived.
 
 **Coupled relaxations.** The averaging loss comes from letting each hyperplane choose its own row. Since every label lies in 15 hyperplanes, H₅ can also be bounded by averaging over pairs or triples of hyperplanes that must share a row: each such group is weighted so the counts sum to 15 · c(x), and maxima are taken group by group. On the 8-block partition these bounds tighten quickly:
 
@@ -222,18 +242,18 @@ Simulated annealing with exact scoring finds the d = 4 optimum on its first rest
 | Triples sharing a row (4,495 triples) | 4749.51 |
 | True H₅ | 4745.32 |
 
-A search built on triples could in principle approach the true d = 5 value. The difficulty is timing: a group can be scored exactly only once all its hyperplanes are complete, which happens in the last eight or so outside labels, while most of the search cost lies earlier.
+The coupled bound of Section 5 uses one group (the root plus up to about a dozen hyperplanes) per node and bounds unplaced labels by fixed residuals, so it does not need the group to be complete. Several disjoint groups per node, or groups chosen per point, could in principle approach the true d = 5 value.
 
 **Open directions.**
 
-1. A d = 5 bound that does not let each hyperplane choose its own row would aim at the true value, about 0.3531.
+1. Below 17/48. Lower targets need the d = 4 orbits with H₄ ≤ 4760, which are not yet enumerated, as roots and in the level lists, and probably stronger coupling; the true d = 5 value appears to be about 0.3531.
 2. Dimension 6 by the same hierarchy needs complete lists of near-optimal d = 5 partitions, beyond brute force.
 3. Does max H\_d converge to V₂? If so, and V₂ = 7/20, the referee family is a route to the conjecture.
 4. On the lower side, no strategy is known to beat 7/20, and no finite stack attains it \[BCCZW\].
 
 ## 8. Reproducibility
 
-All computations ran on one 2-core x86-64 machine with 8 GB of memory, in about 28 hours of wall-clock time in total. The code is C++20 with SSE4.1, plus Python 3 for the independent checks; it is in this repository with its README and every run log.
+All computations ran on one 2-core x86-64 machine with 8 GB of memory, in about 28 hours of wall-clock time for the first version and 8.6 hours of computing (spread over a longer wall-clock time) for the τ = 4760 run. The code is C++20 with SSE4.1, plus Python 3 for the independent checks; it is in this repository with its README and every run log.
 
 | Program | Role |
 | --- | --- |
@@ -242,13 +262,15 @@ All computations ran on one 2-core x86-64 machine with 8 GB of memory, in about 
 | bb4, bb4s, bb4x, bb4y | d = 4 branch-and-bound: plain, kernel symmetry, lex-leader, streamed leaves |
 | orbit4, expand4 | Orbit representatives under G₄; all labelled images, sorted |
 | bb5, bb5L, bb5S, bb5R | d = 5 search: frame caps, level caps, lex-leader, range-minimum level caps |
-| run\_chunks.sh, run\_d5.sh | Resumable chunked runs |
+| bb5Z, bb5V | d = 5 search with partial-exact, coupled and direct bounds; bb5V adds the pair tables (Theorem 2) |
+| run\_chunks.sh, run\_d5.sh, run\_d5z.sh, run\_d5v.sh | Resumable chunked runs |
 | merge\_chunks.py, check\_d5.py | Coverage checks over chunks; any survivor must be scored exactly at or below τ |
 | pyref.py, verify.py, completeness.py, spotcheck\_local.py | Independent Python checks (Section 6) |
 | verify\_lemma1.py, verify\_lemma2.py | Exact checks of Lemmas 1 and 2 (Section 6) |
+| verify\_bounds.py, mkpaths2.py | Exact-rational recomputation of the coupled bounds; test partitions for path replay |
 | anneal, anneal6 | Simulated annealing for max H\_d, d = 4, 5, 6 |
 
-To reproduce Theorem 2: build the frame table, run the d = 4 search at L = 104 in chunks, reduce and expand the orbits above 4760, then run the d = 5 search at τ = 4766 with those lists and the 224 roots above 4766 and check the chunks. The README lists the exact commands.
+To reproduce Theorem 2: build the frame table, run the d = 4 search at L = 104 in chunks, reduce and expand the orbits above 4760, then run bb5V at τ = 4760 with those lists and all 291 orbits as roots and check the chunks. The README lists the exact commands.
 
 ## References
 
